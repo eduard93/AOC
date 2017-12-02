@@ -66,7 +66,6 @@ ClassMethod DivideList(list As %List = {$lb(1, 3, 9)})
 			}
 		}
 	}
-    quit result
 }
 
 }

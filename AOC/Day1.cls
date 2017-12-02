@@ -24,21 +24,25 @@ ClassMethod Hard(input As %String = {..#HARD}, verbose As %Boolean = {$$$YES}) A
 	set:input=..#HARD verbose = $$$NO
 	write:verbose !,"input ", input
 	set sum = 0
-	set ahead = $l(input)/2
-	set input = input _ $e(input, 1, ahead)
+	
+	set length = $l(input)
+	set half = length/2
+	set input = input _ input
+	//set ahead = $l(input)/2
+	//set input = input _ $e(input, 1, ahead)
 	write:verbose !,"input ", input
-	for i=1:1:ahead*2 {
+	for i=1:1:length {
 		set char = $e(input, i)
-		set match = $e(input, i + 1, i + ahead)
+		set match = $e(input, i + 1, i + half)
 		set find = $find(match, char)
 		
 		if verbose {
 			write !,"char ",char
 			write !,"match ", match
-			write !,"find ", find
+			write !,"find ", (find>0)
 			write !
 		}
-		set:find sum = sum + +char
+		set:(find>0) sum = sum + +char
 	}
 	quit sum
 }
